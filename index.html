@@ -1,23 +1,84 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Document</title>
+  <title>Mesto Russia</title>
 </head>
+
 <body>
   <div class="page">
     <header class="header">
       <img class="header__logo" src="./images/logo_white.svg" alt="логотип">
     </header>
     <main class="content">
-
+      <div class="profile">
+        <div class="profile__card">
+          <img class="profile__avatar" src="./images/avatar.png" alt="изображение профиля">
+          <div class="profile__info">
+            <div class="profile__container">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__edit-button">
+                <!-- <img src="./images/pen.png" alt="ручка"> -->
+              </button>
+            </div>
+            <p class="profile__about">Исследователь океана</p>
+          </div>
+        </div>
+        <button type="button" class="profile__add-button"></button>
+      </div>
+      <section class="cards" aria-label="">
+        <article class="card">
+          <img class="card__image" src="./images/komi.jpg" alt="">
+          <div class="card__container">
+            <h2 class="card__title">Республика Коми</h2>
+            <button type="button" class="card__button-like"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/Kucherla.jpg" alt="">
+          <div class="card__container">
+            <h2 class="card__title">Алтай</h2>
+            <button type="button" class="card__button-like"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/baikal.jpg" alt="">
+          <div class="card__container">
+            <h2 class="card__title">Байкал</h2>
+            <button type="button" class="card__button-like"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/dombai.jpg" alt="">
+          <div class="card__container">
+            <h2 class="card__title">Домбай</h2>
+            <button type="button" class="card__button-like"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/karachaevsk.jpg" alt="">
+          <div class="card__container">
+            <h2 class="card__title">Карачаевск</h2>
+            <button type="button" class="card__button-like"></button>
+          </div>
+        </article>
+        <article class="card">
+          <img class="card__image" src="./images/elbrus.jpg" alt="">
+          <div class="card__container">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button type="button" class="card__button-like"></button>
+          </div>
+        </article>
+      </section>
     </main>
     <footer class="footer">
 
     </footer>
   </div>
 </body>
+
 </html>
