@@ -15,7 +15,7 @@
       <img class="header__logo" src="./images/logo_white.svg" alt="логотип">
     </header>
     <main class="content">
-      <div class="profile">
+      <section class="profile">
         <div class="profile__card">
           <img class="profile__avatar" src="./images/avatar.png" alt="изображение профиля">
           <div class="profile__info">
@@ -28,45 +28,45 @@
           </div>
         </div>
         <button type="button" class="profile__add-button"></button>
-      </div>
+      </section>
       <section class="cards" aria-label="Карточки с красивыми местами">
         <article class="card">
-          <img class="card__image" src="./images/komi.jpg" alt="">
+          <img class="card__image" src="./images/komi.jpg" alt="зимняя река с лесом">
           <div class="card__container">
             <h2 class="card__title">Республика Коми</h2>
             <button type="button" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
-          <img class="card__image" src="./images/Kucherla.jpg" alt="">
+          <img class="card__image" src="./images/Kucherla.jpg" alt="летний луг с дорогой на фоне гор">
           <div class="card__container">
             <h2 class="card__title">Алтай</h2>
             <button type="button" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
-          <img class="card__image" src="./images/baikal.jpg" alt="">
+          <img class="card__image" src="./images/baikal.jpg" alt="замерзший Байкал">
           <div class="card__container">
             <h2 class="card__title">Байкал</h2>
             <button type="button" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
-          <img class="card__image" src="./images/dombai.jpg" alt="">
+          <img class="card__image" src="./images/dombai.jpg" alt="лес на фоне гор">
           <div class="card__container">
             <h2 class="card__title">Домбай</h2>
             <button type="button" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
-          <img class="card__image" src="./images/karachaevsk.jpg" alt="">
+          <img class="card__image" src="./images/karachaevsk.jpg" alt="разрушенное здание">
           <div class="card__container">
             <h2 class="card__title">Карачаевск</h2>
             <button type="button" class="card__button-like"></button>
           </div>
         </article>
         <article class="card">
-          <img class="card__image" src="./images/elbrus.jpg" alt="">
+          <img class="card__image" src="./images/elbrus.jpg" alt="вид на гору Эльбрус">
           <div class="card__container">
             <h2 class="card__title">Гора Эльбрус</h2>
             <button type="button" class="card__button-like"></button>
@@ -80,10 +80,10 @@
   </div>
   <div class="popup">
     <div class="popup__container">
-      <form class="popup__form">
+      <form class="popup__form" name="popupForm">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__input" id="userNameInput" name="userNameInput">
-        <input type="text" class="popup__input" id="userAboutInput" name="userAboutInput">
+        <input type="text" class="popup__input popup__input_data_name" id="userNameInput" name="userNameInput">
+        <input type="text" class="popup__input popup__input_data_about" id="userAboutInput" name="userAboutInput">
         <button type="submit" class="popup__save-button">Сохранить</button>
       </form>
       <button type="button" class="popup__close-button"></button>

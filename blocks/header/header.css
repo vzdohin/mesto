@@ -1,6 +1,5 @@
 .header {
-  /* min-width: 320px; */
-  width: 880px;
+  max-width: 880px;
   margin: 0 auto;
   padding-top: 45px;
   padding-bottom: 37px;
@@ -13,7 +12,6 @@
     max-width: 320px;
     padding-top: 28px;
     padding-bottom: 30px;
-    margin: 0 auto;
   }
   
 }

@@ -1,15 +1,18 @@
 .profile__container {
   display: flex;
   align-items: center;
-  max-height: 40px;
-  margin-bottom: 5px;
+  margin: 0;
+  padding-bottom: 10px;
+  align-items: baseline;
+  
 }
 
 @media screen and (min-width: 320px) and (max-width: 900px) {
   .profile__container {
     align-items: baseline;
     justify-content:baseline;
-    max-height: 32px;
+    padding-bottom: 5px;
+    max-width: 282px;
   }
 
 }

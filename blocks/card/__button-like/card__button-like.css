@@ -3,7 +3,7 @@
   height: 20px;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  background-image: url(../../../images/like.png);
+  background-image: url(../../../images/like.svg);
   /* 
   
   
@@ -19,6 +19,6 @@
 }
 
 .card__button-like:active {
-  background-image: url(../../../images/like-active.png);
+  background-image: url(../../../images/like-active.svg);
   opacity: 1;
 }
