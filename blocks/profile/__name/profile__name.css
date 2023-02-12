@@ -5,7 +5,10 @@
   font-size: 42px;
   line-height: 48px;
   color: rgba(255, 255, 255, 1);
-  margin: 0 18px 7px 0;
+  margin: 0 19px 15px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 320px) and (max-width: 900px) {
@@ -13,7 +16,11 @@
     font-size: 27px;
     line-height: 33px;
     text-align: center;
-    margin-right: 10px;
+    margin-right: 0;
+    margin-bottom: 0;
+    /* margin-right: 10px; */
+    display: block;
+    
   }
 
 }

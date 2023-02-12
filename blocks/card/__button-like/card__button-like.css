@@ -12,3 +12,13 @@
   background-size: 22px 19px;
   background-position: center;
 }
+
+.card__button-like:hover {
+  opacity: .5;
+  cursor: pointer;
+}
+
+.card__button-like:active {
+  background-image: url(../../../images/like-active.png);
+  opacity: 1;
+}
