@@ -4,10 +4,6 @@
   background-color: rgba(0, 0, 0, 0);
   border: none;
   background-image: url(../../../images/like.svg);
-  /* 
-  
-  
-  padding: 0; */
   background-repeat: no-repeat;
   background-size: 22px 19px;
   background-position: center;
@@ -18,7 +14,3 @@
   cursor: pointer;
 }
 
-/* .card__button-like:active {
-  background-image: url(../../../images/like-active.svg);
-  opacity: 1;
-} */

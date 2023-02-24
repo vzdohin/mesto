@@ -93,6 +93,7 @@ function handleClickDeleteButton(evt) {
 function handleClickLikeButton(evt) {
   const button = evt.target;
   button.classList.toggle('card__button-like_active');
+  
 }
 
 function handleClickImageButton(evt){
