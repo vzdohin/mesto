@@ -1,5 +1,5 @@
 .popup__title {
-  display: block;
+  /* display: block; */
   max-width: 330px;
   font-style: normal;
   font-weight: 900;
@@ -7,7 +7,7 @@
   line-height: 29px;
   color: rgba(0, 0, 0, 1);
   margin: 0 50px 47px 0;
-  text-align: right;
+  align-self: flex-start;
 }
 
 @media screen and (min-width: 320px) and (max-width: 900px) {
