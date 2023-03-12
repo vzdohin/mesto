@@ -1,5 +1,6 @@
 const content = document.querySelector('.content');
 const cardsContainer = content.querySelector('.cards');
+const popups = document.querySelectorAll('.popup');
 const editPopupProfile = document.querySelector('.popup_profile-edit');
 const formElement = editPopupProfile.querySelector('.popup__form');
 const editProfileButton = document.querySelector('.profile__edit-button');
@@ -57,17 +58,37 @@ editProfileButton.addEventListener('click', function () {
 })
 
 
-  closeButton.forEach((button) => {
-    const popup = button.closest('.popup');
-    button.addEventListener('click', () => closePopup(popup));
-  })
+closeButton.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+})
 
 function openPopup(popup) {
   popup.classList.add('popup_opened')
+  document.addEventListener('keydown', closePopupEsc);
 }
+
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
+  document.addEventListener('keydown', closePopupEsc);
+  
 }
+
+const closePopupEsc = (evt) => {
+  const popupOpened = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(popupOpened);
+  } 
+}
+
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if(evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+  })
+})
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -107,10 +128,10 @@ function handleClickDeleteButton(evt) {
 function handleClickLikeButton(evt) {
   const button = evt.target;
   button.classList.toggle('card__button-like_active');
-  
+
 }
 
-function handleClickImageButton(evt){
+function handleClickImageButton(evt) {
   openPopup(popupImage);
   image.src = evt.target.src;
   image.alt = evt.target.alt;
@@ -139,5 +160,8 @@ function handleFormSubmitCard(evt) {
   }
   addCard(newCard);
   closePopup(addPopupCard);
+  const button = formElementAddCard.querySelector('.popup__save-button');
+  button.disabled = true;
+  button.classList.add('popup__save-button_disabled');
   evt.target.reset();
 }
