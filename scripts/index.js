@@ -11,8 +11,6 @@ buttonsClosePopup.forEach((button) => {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  const form = popup.querySelector('.popup__form')
-  form.reset();
   document.addEventListener('keydown', closePopupEsc);
 }
 
@@ -92,19 +90,20 @@ for (let i = 0; i < initialCards.length; i++) {
 
 addCardButton.addEventListener('click', function (evt) {
   openPopup(addPopupCard);
-  
-  // addPopupCard.textContent = 'userNameInput';
-  // addPopupCard.textContent = 'userAboutInput';
+  const form = addPopupCard.querySelector('.popup__form')
+  form.reset();
 })
 
 formElementAddCard.addEventListener('submit', handleFormSubmitCard);
 
 function handleFormSubmitCard(evt) {
   evt.preventDefault();
+    
   const newCard = {
     name: cardNameInput.value,
     link: cardUrlInput.value
   }
+ 
   addCard(newCard);
   closePopup(addPopupCard);
   disableButton(buttonSubmitProfile, configValidation.inactiveButtonClass);
