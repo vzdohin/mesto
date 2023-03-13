@@ -4,6 +4,7 @@ const configValidation = {
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
   inputErrorClass: 'input-error-style',
+  inputInvalidClass: 'popup__input_validity_invalid'
 }
 
 const showInputError = (errorText, validationMessage, inputErrorClass) => {
@@ -17,6 +18,7 @@ const hideInputError = (errorText, inputErrorClass) => {
 }
 
 const disableButton = (submitButton, inactiveButtonClass) => {
+  
   submitButton.classList.add(inactiveButtonClass);
   submitButton.disabled = true;
 }
@@ -25,15 +27,15 @@ const enableButton = (submitButton, inactiveButtonClass) => {
   submitButton.disabled = false;
 }
 
-const checkInputValidation = (input, inputErrorClass) => { 
+const checkInputValidation = (input, inputErrorClass, inputInvalidClass) => { 
   const inputName = input.getAttribute('name');
   const errorText = document.getElementById(`${inputName}-error`);
   if (!input.validity.valid){
     showInputError(errorText, input.validationMessage, inputErrorClass);
-    input.classList.add('popup__input_validity_invalid')
+    input.classList.add(inputInvalidClass)
   } else {
     hideInputError(errorText);
-    input.classList.remove('popup__input_validity_invalid')
+    input.classList.remove(inputInvalidClass);
   }
 
 }
@@ -50,13 +52,13 @@ const toggleButtonState = (submitButton, inactiveButtonClass, inputs) => {
   }
 }
 
-const setEventListeners = (form, inputs, inputErrorClass, submitButton, inactiveButtonClass) => {
+const setEventListeners = (form, inputs, inputErrorClass, submitButton, inactiveButtonClass, inputInvalidClass) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
   });
   inputs.forEach((input) => {
     input.addEventListener('input', (evt) => {
-      checkInputValidation(input, inputErrorClass);
+      checkInputValidation(input, inputErrorClass, inputInvalidClass);
       toggleButtonState(submitButton, inactiveButtonClass, inputs);
     });
   });
@@ -70,7 +72,8 @@ const enableValidation = (configValidation) => {
   });
     const inputs = Array.from(form.querySelectorAll(configValidation.inputSelector));
     const submitButton = form.querySelector(configValidation.submitButtonSelector);
-    setEventListeners(form, inputs, configValidation.inputErrorClass, submitButton, configValidation.inactiveButtonClass);
+    setEventListeners(form, inputs, configValidation.inputErrorClass, submitButton, 
+      configValidation.inactiveButtonClass, configValidation.inputInvalidClass);
 });
 };
 
