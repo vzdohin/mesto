@@ -10,7 +10,9 @@ buttonsClosePopup.forEach((button) => {
 })
 
 function openPopup(popup) {
-  popup.classList.add('popup_opened')
+  popup.classList.add('popup_opened');
+  const form = popup.querySelector('.popup__form')
+  form.reset();
   document.addEventListener('keydown', closePopupEsc);
 }
 
@@ -88,15 +90,17 @@ for (let i = 0; i < initialCards.length; i++) {
   addCard(initialCards[i]);
 }
 
-addCardButton.addEventListener('click', function () {
+addCardButton.addEventListener('click', function (evt) {
   openPopup(addPopupCard);
+  
+  // addPopupCard.textContent = 'userNameInput';
+  // addPopupCard.textContent = 'userAboutInput';
 })
 
 formElementAddCard.addEventListener('submit', handleFormSubmitCard);
 
 function handleFormSubmitCard(evt) {
   evt.preventDefault();
-  const form = evt.target;
   const newCard = {
     name: cardNameInput.value,
     link: cardUrlInput.value
