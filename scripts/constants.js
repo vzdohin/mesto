@@ -1,3 +1,26 @@
+export {
+  // content,
+  cardsContainer,
+  popups,
+  editPopupProfile,
+  formEditProfile,
+  editProfileButton,
+  userNameElement,
+  userNameInput,
+  userAboutElement,
+  userAboutInput,
+  buttonsClosePopup, 
+  addPopupCard,
+  formElementAddCard,
+  cardNameInput,
+  cardUrlInput,
+  addCardButton, 
+  // cardClone,
+  popupImage, image,
+  caption,
+  initialCards
+}
+
 const content = document.querySelector('.content');
 const cardsContainer = content.querySelector('.cards');
 const popups = document.querySelectorAll('.popup');
@@ -14,12 +37,11 @@ const buttonsClosePopup = document.querySelectorAll('.popup__close-button');
 
 const addPopupCard = document.querySelector('.popup_card-add');
 const formElementAddCard = addPopupCard.querySelector('.popup__form');
-const buttonSubmitProfile = formElementAddCard.querySelector('.popup__save-button');
 const cardNameInput = formElementAddCard.querySelector('.popup__input_card_name');
 const cardUrlInput = formElementAddCard.querySelector('.popup__input_card_url');
 const addCardButton = document.querySelector('.profile__add-button');
 
-const cardClone = document.querySelector('#card-template').content;
+// const cardClone = document.querySelector('#card-template');
 
 const popupImage = document.querySelector('.popup_zoom-image');
 const image = popupImage.querySelector('.popup__zoom-image');
@@ -51,3 +73,4 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1651479801250-feac885982fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
   }
 ];
+
