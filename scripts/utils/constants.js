@@ -16,7 +16,8 @@ export {
   cardUrlInput,
   addCardButton, 
   // cardClone,
-  popupImage, image,
+  popupImage, 
+  image,
   caption,
   initialCards
 }

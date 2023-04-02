@@ -1,3 +1,4 @@
+export { Validator, configValidation };
 const configValidation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -13,6 +14,7 @@ class Validator {
     this.formElement = formElement;
     this.forms = Array.from(this.formElement.querySelectorAll(this.configValidation.formSelector));
     this.submitButton = this.formElement.querySelector(this.configValidation.submitButtonSelector);
+    this.inputs = Array.from(this.formElement.querySelectorAll(this.configValidation.inputSelector));
   }
   _showInputError(input, errorText) {
     errorText.textContent = input.validationMessage;
@@ -32,11 +34,11 @@ class Validator {
       input.classList.remove(this.configValidation.inputInvalidClass);
     }
   }
-  _hasInvalidInput(inputs) {
-    return Array.from(inputs).some((input) => !input.validity.valid);
+  _hasInvalidInput() {
+    return Array.from(this.inputs).some((input) => !input.validity.valid);
   }
-  _toggleButtonState(inputs) {
-    if (!this._hasInvalidInput(inputs)) {
+  _toggleButtonState() {
+    if (!this._hasInvalidInput(this.inputs)) {
       this._enableButton();
     } else {
       this._disableButton();
@@ -51,24 +53,25 @@ class Validator {
     this.submitButton.disabled = false;
   }
   _setEventListeners() {
-    const inputs = Array.from(this.formElement.querySelectorAll(this.configValidation.inputSelector));
     this.formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._disableButton();
     });
     
-    inputs.forEach((input) => {
+    this.inputs.forEach((input) => {
       const errorText = this.formElement.querySelector(`#${input.name}-error`);
       input.addEventListener('input', () => {
         this._checkInputValidation(input, errorText);
-        this._toggleButtonState(inputs);
+        this._toggleButtonState(this.inputs);
       });
     });
   };
-
+  disableSubmitButton(){
+    formElementAddCard.classList.add('.popup__save-button_disabled');
+  }
   enableValidation() {
     this._setEventListeners();
         
   };
 }
-export { Validator, configValidation };
+

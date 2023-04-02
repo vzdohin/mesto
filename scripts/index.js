@@ -1,6 +1,5 @@
 
 import {
-  // content,
   cardsContainer,
   popups,
   editPopupProfile,
@@ -16,12 +15,10 @@ import {
   cardNameInput,
   cardUrlInput,
   addCardButton, 
-  // cardClone,
-  popupImage, image,
-  caption,
-  initialCards} from './constants.js'
+  initialCards} from './utils/constants.js'
 import Card from './Card.js'
 import {Validator, configValidation} from './FormValidator.js'
+import { openPopup, closePopup, closePopupEsc } from './utils/utils.js';
 
 const cardFormValidate = new Validator(configValidation, formElementAddCard);
 cardFormValidate.enableValidation();
@@ -39,23 +36,6 @@ buttonsClosePopup.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 })
-
- function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupEsc);
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened')
-  document.addEventListener('keydown', closePopupEsc);
-}
-
-const closePopupEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    const popupOpened = document.querySelector('.popup_opened');
-    closePopup(popupOpened);
-  }
-}
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -84,35 +64,27 @@ initialCards.forEach((item) => {
   cardsContainer.prepend(cardElement);
 })
 
-function addCard (initialCards) {
-  const newCard = new Card(initialCards, '#card-template');
+function addCard (evt) {
+  const newCard = new Card(evt, '#card-template');
   cardsContainer.prepend(newCard.generateCard());
 }
-
+createCard(initialCards);
 
 addCardButton.addEventListener('click', function (evt) {
   openPopup(addPopupCard);
-  const form = addPopupCard.querySelector('.popup__form')
-  form.reset();
-  
+  formElementAddCard.reset();
 })
 
 formElementAddCard.addEventListener('submit', handleFormSubmitCard);
 
 function handleFormSubmitCard(evt) {
   evt.preventDefault();
-    
   const newCard = {
     name: cardNameInput.value,
     link: cardUrlInput.value
   }
- 
   addCard(newCard);
-  
   closePopup(addPopupCard);
   evt.target.reset();
-  formElementAddCard.classList.add('.popup__save-button_disabled');
-  
 }
 
-export {openPopup, popupImage, image, caption}
