@@ -1,4 +1,4 @@
-export { Validator, configValidation };
+export { FormValidator, configValidation };
 const configValidation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -8,7 +8,7 @@ const configValidation = {
   inputInvalidClass: 'popup__input_validity_invalid'
 }
 
-class Validator {
+class FormValidator {
   constructor(configValidation, formElement) {
     this.configValidation = configValidation;
     this.formElement = formElement;

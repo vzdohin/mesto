@@ -17,12 +17,12 @@ import {
   addCardButton, 
   initialCards} from './utils/constants.js'
 import Card from './Card.js'
-import {Validator, configValidation} from './FormValidator.js'
+import {FormValidator, configValidation} from './FormValidator.js'
 import { openPopup, closePopup, closePopupEsc } from './utils/utils.js';
 
-const cardFormValidate = new Validator(configValidation, formElementAddCard);
+const cardFormValidate = new FormValidator(configValidation, formElementAddCard);
 cardFormValidate.enableValidation();
-const profileFormValidate = new Validator(configValidation, formEditProfile);
+const profileFormValidate = new FormValidator(configValidation, formEditProfile);
 profileFormValidate.enableValidation();
 
 
