@@ -1,4 +1,4 @@
-
+import './index.css'
 import {
   cardsContainer,
   popups,
@@ -15,14 +15,14 @@ import {
   cardNameInput,
   cardUrlInput,
   addCardButton, 
-  initialCards} from './utils/constants.js'
-import Card from './components/Card.js'
-import Section from './components/Section.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
-import {FormValidator, configValidation} from './components/FormValidator.js'
-import { openPopup, closePopup, closePopupEsc } from './utils/utils.js';
+  initialCards} from '../utils/constants'
+import Card from '../components/Card'
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import {FormValidator, configValidation} from '../components/FormValidator.js'
+import { openPopup, closePopup, closePopupEsc } from '../utils/utils.js';
 
 
 // validation
