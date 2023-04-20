@@ -1,17 +1,18 @@
-import { image, caption, popupImage } from './utils/constants.js';
-import { openPopup  } from './utils/utils.js';
-
+import { image, caption, popupImage } from '../utils/constants.js';
+import { openPopup  } from '../utils/utils.js';
+import Popup from './Popup.js';
 
 export default class Card {
-  constructor(initialCards, templateSelector) {
-    this.name = initialCards.name;
-    this.link = initialCards.link;
-    this.templateSelector = templateSelector;
+  constructor(data, templateSelector, handleCardClick) {
+    this._name = data.name;
+    this._link = data.link;
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
 
   }
   _getTemplate() {
     const cardElement = document
-      .querySelector(this.templateSelector)
+      .querySelector(this._templateSelector)
       .content.querySelector('.card')
       .cloneNode(true);
     return cardElement;
@@ -22,12 +23,6 @@ export default class Card {
   _handleClickDeleteButton() {
     this.element.remove();
   }
-  _handleClickImageButton() {
-    openPopup(popupImage);
-    image.src = this.link
-    image.alt = this.name;
-    caption.textContent = this.name;
-  }
   _setEventListeners() {
     this.likeButton.addEventListener('click', () => {
       this._handleClickLikeButton()
@@ -35,16 +30,17 @@ export default class Card {
     this.deleteButton.addEventListener('click', () => {
       this._handleClickDeleteButton()
     })
-    this.cardPicture.addEventListener('click', () => {
-      this._handleClickImageButton()
-    })
+    this._cardImage.addEventListener('click', () => {
+      // console.log(this._handleCardClick)
+      this._handleCardClick(this._link,this._name)});
+    
   }
   generateCard() {
     this.element = this._getTemplate();
-    this.cardPicture = this.element.querySelector('.card__image');
-    this.cardPicture.src = this.link;
-    this.cardPicture.alt = this.name;
-    this.element.querySelector('.card__title').textContent = this.name;
+    this._cardImage = this.element.querySelector('.card__image');
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this.element.querySelector('.card__title').textContent = this._name;
     this.likeButton = this.element.querySelector('.card__button-like');
     this.deleteButton = this.element.querySelector('.card__button-delete');
     this._setEventListeners();
