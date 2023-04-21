@@ -19,7 +19,16 @@ export {
   popupImage, 
   image,
   caption,
-  initialCards
+  initialCards,
+  configValidation
+}
+const configValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'input-error-style',
+  inputInvalidClass: 'popup__input_validity_invalid'
 }
 
 const content = document.querySelector('.content');

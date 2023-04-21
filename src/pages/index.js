@@ -15,13 +15,14 @@ import {
   cardNameInput,
   cardUrlInput,
   addCardButton, 
-  initialCards} from '../utils/constants'
+  initialCards,
+  configValidation} from '../utils/constants'
 import Card from '../components/Card'
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import {FormValidator, configValidation} from '../components/FormValidator.js'
+import {FormValidator} from '../components/FormValidator.js'
 import { openPopup, closePopup, closePopupEsc } from '../utils/utils.js';
 
 

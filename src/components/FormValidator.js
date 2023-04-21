@@ -1,18 +1,11 @@
-export { FormValidator, configValidation };
-const configValidation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'input-error-style',
-  inputInvalidClass: 'popup__input_validity_invalid'
-}
+export { FormValidator };
+import {configValidation} from '../utils/constants'
 
 class FormValidator {
   constructor(configValidation, formElement) {
     this.configValidation = configValidation;
     this.formElement = formElement;
-    this.forms = Array.from(this.formElement.querySelectorAll(this.configValidation.formSelector));
+    // this.forms = Array.from(this.formElement.querySelectorAll(this.configValidation.formSelector));
     this.submitButton = this.formElement.querySelector(this.configValidation.submitButtonSelector);
     this.inputs = Array.from(this.formElement.querySelectorAll(this.configValidation.inputSelector));
   }
@@ -67,7 +60,8 @@ class FormValidator {
     });
   };
   disableSubmitButton(){
-    formElementAddCard.classList.add('.popup__save-button_disabled');
+    this.formElementAddCard.classList.add('.popup__save-button_disabled');
+    this.formElementAddCard.setAttribute('disabled', true);
   }
   enableValidation() {
     this._setEventListeners();
