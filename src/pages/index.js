@@ -23,7 +23,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import {FormValidator} from '../components/FormValidator.js'
-import { openPopup, closePopup, closePopupEsc } from '../utils/utils.js';
+// import { openPopup, closePopup, closePopupEsc } from '../utils/utils.js';
 
 
 // validation
@@ -60,8 +60,8 @@ const userProfileInfo = new UserInfo({
 });
 // popup Forms
 // popup User
-const popupUserInfo = new PopupWithForm('.popup_profile-edit', {handleFormSubmit:
-(userData) => {
+const popupUserInfo = new PopupWithForm('.popup_profile-edit', {
+  handleFormSubmit: (userData) => {
   const newUserInfo = {
     userName: userData.value,
     aboutInfo: userData.value
@@ -74,8 +74,8 @@ const popupUserInfo = new PopupWithForm('.popup_profile-edit', {handleFormSubmit
 }
 )
 // popup addCard
-const popupAddCard = new PopupWithForm('.popup_card-add', {handleFormSubmit:
-(cardData) => {
+const popupAddCard = new PopupWithForm('.popup_card-add', {
+  handleFormSubmit: (cardData) => {
   const newCard = {
     name: cardData.name,
     link: cardData.link
@@ -84,27 +84,26 @@ const popupAddCard = new PopupWithForm('.popup_card-add', {handleFormSubmit:
   popupAddCard.close();
   // cardList.addItem(renderCard(cardData))
 }
-}
-)
+})
 
 popupAddCard.setEventListeners();
 popupUserInfo.setEventListeners();
 
 editProfileButton.addEventListener('click', function () {
-  openPopup(editPopupProfile);
+  popupUserInfo.open();
   userNameInput.value = userNameElement.textContent;
   userAboutInput.value = userAboutElement.textContent;
 })
 
 buttonsClosePopup.forEach((button) => {
   const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
+  button.addEventListener('click', () => popup.classList.remove('popup_opened'));
 })
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
+      popup.classList.remove('popup_opened');
     }
   })
 })
@@ -113,7 +112,7 @@ function submitEditProfileForm(evt) {
   evt.preventDefault();
   userNameElement.textContent = userNameInput.value;
   userAboutElement.textContent = userAboutInput.value;
-  closePopup(editPopupProfile);
+  popupUserInfo.close();
 }
 
 formEditProfile.addEventListener('submit', submitEditProfileForm);
@@ -135,7 +134,7 @@ function addCard (evt) {
 createCard(initialCards);
 
 addCardButton.addEventListener('click', function (evt) {
-  openPopup(addPopupCard);
+  popupAddCard.open();
   formElementAddCard.reset();
 })
 
@@ -148,7 +147,7 @@ function handleFormSubmitCard(evt) {
     link: cardUrlInput.value
   }
   addCard(newCard);
-  closePopup(addPopupCard);
+  popupAddCard.close();
   evt.target.reset();
 }
 

@@ -1,5 +1,4 @@
 export { FormValidator };
-import {configValidation} from '../utils/constants'
 
 class FormValidator {
   constructor(configValidation, formElement) {
@@ -60,7 +59,7 @@ class FormValidator {
     });
   };
   disableSubmitButton(){
-    this.formElementAddCard.classList.add('.popup__save-button_disabled');
+    this.formElementAddCard.classList.add(inactiveButtonClass);
     this.formElementAddCard.setAttribute('disabled', true);
   }
   enableValidation() {
