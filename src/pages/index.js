@@ -30,17 +30,21 @@ cardFormValidate.enableValidation();
 const profileFormValidate = new FormValidator(configValidation, formEditProfile);
 profileFormValidate.enableValidation();
 
-// render cards
-
-const renderCard = (item) => {
-  const cardInstance = new Card(item, '#card-template');
+// render card + pervie cards
+const createCard = (item) => {
+  const cardInstance = new Card(item, '#card-template', handleCardClick);
   return cardInstance.generateCard()
 }
 
-const cardList = new Section({ items: initialCards, renderer: renderCard }, '.cards__list')
+const cardList = new Section({ 
+  items: initialCards, 
+  renderer: (item) => {
+    cardList.addItem(createCard(item));
+  } 
+}, '.cards')
 cardList.renderItems();
 
-// popup Image
+// всплывающее окно картинки на весь экр
 function handleCardClick(src, alt) {
   popupImage.open(src, alt)
 }
@@ -49,100 +53,57 @@ const popupImage = new PopupWithImage('.popup_zoom-image');
 popupImage.setEventListeners();
 
 
-// popup User
-
-const userProfileInfo = new UserInfo({
+// всплывающее окно профиля
+const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   aboutInfoSelector: '.profile__about'
 });
-// popup Forms
-// popup User
-const popupUserInfo = new PopupWithForm('.popup_profile-edit', {
-  handleFormSubmit: (userData) => {
-    const newUserInfo = {
-      userName: userData.value,
-      aboutInfo: userData.value
-    };
-    userProfileInfo.setUserInfo(newUserInfo);
-    popupUserInfo.close();
+
+
+// изменение инфы пользователя 
+const handleSaveFormSubmit = (userData) => {
+  {
+      const newUserInfo = {
+        name: userData.userNameInput,
+        info: userData.userAboutInput
+      };
+      userInfo.setUserInfo(newUserInfo);
+      popupUserInfo.close();
+    }
+}
+
+const popupUserInfo = new PopupWithForm('.popup_profile-edit', {handleFormSubmit: handleSaveFormSubmit})
+// добавление новой карточки 
+
+const handleAddNewCard = (cardData) => {
+  {
+      const newCard = {
+        name: cardData.cardNameInput,
+        link: cardData.cardUrlInput
+      };
+      cardList.addItem(createCard(newCard));
+      popupAddCard.close();
   }
-})
-// popup addCard
-const popupAddCard = new PopupWithForm('.popup_card-add', {
-  handleFormSubmit: (cardData) => {
-    const newCard = {
-      name: cardData.name,
-      link: cardData.link
-    };
-    cardList.addItem(renderCard(newCard));
-    popupAddCard.close();
-    // cardList.addItem(renderCard(cardData))
-  }
-})
+}
+
+const popupAddCard = new PopupWithForm('.popup_card-add',{ handleFormSubmit: handleAddNewCard})
 
 popupAddCard.setEventListeners();
 popupUserInfo.setEventListeners();
 
 editProfileButton.addEventListener('click', function () {
   popupUserInfo.open();
-  userNameInput.value = userNameElement.textContent;
-  userAboutInput.value = userAboutElement.textContent;
+  const infoObject = userInfo.getUserInfo()
+  console.log(infoObject)
+  userNameInput.value = infoObject.name;
+  userAboutInput.value = infoObject.info;
+  // popupUserInfo.setInputValues(infoObject.name, infoObject.info);
 })
 
-buttonsClosePopup.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => popup.classList.remove('popup_opened'));
-})
-
-popups.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      popup.classList.remove('popup_opened');
-    }
-  })
-})
-
-function submitEditProfileForm(evt) {
-  evt.preventDefault();
-  userNameElement.textContent = userNameInput.value;
-  userAboutElement.textContent = userAboutInput.value;
-  popupUserInfo.close();
-}
-
-formEditProfile.addEventListener('submit', submitEditProfileForm);
-
-const createCard = (item) => {
-  const cardInstance = new Card(item, '#card-template', handleCardClick);
-  return cardInstance.generateCard()
-}
-
-initialCards.forEach((item) => {
-  const cardElement = createCard(item);
-  cardsContainer.prepend(cardElement);
-})
-
-function addCard(evt) {
-  const newCard = new Card(evt, '#card-template', handleCardClick);
-  cardsContainer.prepend(newCard.generateCard());
-}
-createCard(initialCards);
 
 addCardButton.addEventListener('click', function (evt) {
   popupAddCard.open();
-  formElementAddCard.reset();
 })
 
-formElementAddCard.addEventListener('submit', handleFormSubmitCard);
-
-function handleFormSubmitCard(evt) {
-  evt.preventDefault();
-  const newCard = {
-    name: cardNameInput.value,
-    link: cardUrlInput.value
-  }
-  addCard(newCard);
-  popupAddCard.close();
-  evt.target.reset();
-}
 
 

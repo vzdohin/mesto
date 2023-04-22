@@ -1,34 +1,40 @@
 import Popup from "./Popup.js";
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, handleFormSubmit){
+  constructor(popupSelector, { handleFormSubmit }){
     super(popupSelector);
     
-    this._popupForm = this._popupSelector.querySelector('.popup__form')
-    this._handleFormSubmit = handleFormSubmit
+    this._popupForm = this._popupSelector.querySelector('.popup__form');
+    this._handleFormSubmit = handleFormSubmit;
+    this._inputList = this._popupSelector.querySelectorAll('.popup__input');
     
   }
   
   close(){
+    this._popupForm.reset();
     super.close();
   }
-  _getImputValues(){
-    this._inputList = this._popupSelector.querySelectorAll('.popup__input');
+  _getInputValues () {
     this._formList = {};
     this._inputList.forEach(input => { 
-      const value = input.value;
-      const name = input.name;
-      this._formList[name] = value;
+      this._formList[input.name] = input.value;
     });
     
     return this._formList;
   };
+  // setInputValues(data) {
+  //   this._inputList.forEach((input)=>{
+  //     input.value = data[input.name]
+  //   })
+  // }
   
   setEventListeners () {
-    super.setEventListeners();
-    this._popupForm.addEventListener('submit', () => {
-      const imputValues = this._getImputValues
-      this._handleFormSubmit = imputValues;
+    
+    this._popupForm.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+
+      this._handleFormSubmit(this._getInputValues());
       this.close();
-    })
+    });
+    super.setEventListeners();
   }
 }

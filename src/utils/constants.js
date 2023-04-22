@@ -15,7 +15,7 @@ export {
   cardNameInput,
   cardUrlInput,
   addCardButton, 
-  // cardClone,
+  cardClone,
   popupImage, 
   image,
   caption,
@@ -51,7 +51,7 @@ const cardNameInput = formElementAddCard.querySelector('.popup__input_card_name'
 const cardUrlInput = formElementAddCard.querySelector('.popup__input_card_url');
 const addCardButton = document.querySelector('.profile__add-button');
 
-// const cardClone = document.querySelector('#card-template');
+const cardClone = document.querySelector('#card-template');
 
 const popupImage = document.querySelector('.popup_zoom-image');
 const image = popupImage.querySelector('.popup__zoom-image');
