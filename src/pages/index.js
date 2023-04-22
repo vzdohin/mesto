@@ -94,7 +94,6 @@ popupUserInfo.setEventListeners();
 editProfileButton.addEventListener('click', function () {
   popupUserInfo.open();
   const infoObject = userInfo.getUserInfo()
-  console.log(infoObject)
   userNameInput.value = infoObject.name;
   userAboutInput.value = infoObject.info;
   // popupUserInfo.setInputValues(infoObject.name, infoObject.info);
