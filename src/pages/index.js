@@ -105,7 +105,7 @@ const userInfo = new UserInfo({
 
 // сохр инфы пользователя, добавляем карточки с сервера
 Promise.all([api.getAllCards(), api.getUserInfo()])
-  .then(([userData, cardsData]) => {
+  .then(([cardsData, userData]) => {
     userId = userData._id;
     userInfo.setUserInfo(userData);
     const cardList = new Section({
