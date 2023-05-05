@@ -105,13 +105,12 @@ const userInfo = new UserInfo({
 
 // сохр инфы пользователя, добавляем карточки с сервера
 Promise.all([api.getAllCards(), api.getUserInfo()])
-  .then(([cardsData, userData]) => {
+  .then(([userData, cardsData]) => {
     userId = userData._id;
     userInfo.setUserInfo(userData);
     const cardList = new Section({
       items: cardsData,
       renderer: (item) => {
-
         cardList.addItem(createCard(item));
       }
     }, '.cards');
