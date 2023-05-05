@@ -42,3 +42,7 @@
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+@import url(../blocks/popup/__title/_confirm-delete/popup__title_confirm-delete.css);
+@import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
+@import url(../blocks/card/__button-like-container/card__button-like-container.css);
+@import url(../blocks/card/__button-like-counter/card__button-like-counter.css);
