@@ -123,11 +123,13 @@ Promise.all([api.getAllCards(), api.getUserInfo()])
 // изменение инфы пользователя 
 const handleSaveFormSubmit = (userData) => {
   {
+    popupUserInfo.setButtonStatus("Сохранение...");
+    popupUserInfo.removeAte
     const newUserInfo = {
       name: userData.userNameInput,
       about: userData.userAboutInput
     };
-    popupUserInfo.setButtonStatus("Сохранение...");
+    
     api.addNewUserInfo(newUserInfo)
       .then((res) => {
         userInfo.setUserInfo(res);
@@ -150,19 +152,21 @@ const photos = new Section({
 
 const handleAddNewCard = (cardData) => {
   {
+    popupAddCard.setButtonStatus("Сохранение...");
     const newCard = {
       name: cardData.cardNameInput,
       link: cardData.cardUrlInput
     };
-    popupUserInfo.setButtonStatus("Сохранение...");
     api.addNewCard(newCard.name, newCard.link)
       .then((res) => {
         const newCardElement = createCard(res);
         photos.addItem(newCardElement);
+        popupAddCard.close();
       })
       .catch((err) => { console.log(err) })
       .finally(() => {
-        popupUserInfo.setButtonStatus("Сохранить");
+        
+        popupAddCard.setButtonStatus("Создать");
       })
   }
 }
@@ -170,17 +174,17 @@ const popupAddCard = new PopupWithForm('.popup_card-add', { handleFormSubmit: ha
 
 // аватар
 const handleChangeAvatar = (data) => {
-  popupUserInfo.setButtonStatus("Сохранение...");
+  popupAvatar.setButtonStatus("Сохранение...");
   api.changeAvatar(data)
     .then((data) => {
       userInfo.setUserAvatar(data);
       popupAvatar.close();
     })
     .catch((err) => console.log(`Ошибка: ${err}`))
-    .finally(() => popupUserInfo.setButtonStatus("Сохранить")
+    .finally(() => popupAvatar.setButtonStatus("Сохранить")
     )
 }
-const popupAvatar = new PopupWithForm('.popup_change-avatar', { handleFormSubmit: handleChangeAvatar })
+const popupAvatar = new PopupWithForm('.popup_change-avatar', { handleFormSubmit: handleChangeAvatar})
 
 //слушатели попапов
 popupAvatar.setEventListeners();

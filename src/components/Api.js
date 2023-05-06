@@ -4,14 +4,19 @@ export default class Api {
     // this._id= config.id;
     this._headers = headers
   }
-
+  _getResponseData(res) {
+    if (!res.ok) {
+        return Promise.reject(`Ошибка: ${res.status}`); 
+    }
+    return res.json();
+}
   getAllCards(){
     return fetch(`${this._url}/cards`, {
       method: "GET",
       headers: this._headers,
       
     })
-    .then((res)=> res.json())
+    .then((res)=>this._getResponseData(res))
   }
   addNewCard(name, link){
     return fetch(`${this._url}/cards`, {
@@ -19,17 +24,14 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({name,link})
     })
-    .then((res)=> {return res.ok
-      ? res.json() 
-      : Promise.reject(`Ошибка ${res.status}`)
-    })
+    .then((res)=>this._getResponseData(res))
   }
   getUserInfo(){
     return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: this._headers,
     })
-    .then((res)=> res.json())
+    .then((res)=>this._getResponseData(res))
   }
   addNewUserInfo(userInfo){
     return fetch(`${this._url}/users/me`, {
@@ -40,7 +42,7 @@ export default class Api {
         about: userInfo.about
       })
     })
-    .then((res)=> res.json())
+    .then((res)=>this._getResponseData(res))
     
   }
   
@@ -51,34 +53,32 @@ export default class Api {
       headers: this._headers,
       
     })
-    .then((res)=> res.json())
+    .then((res)=>this._getResponseData(res))
   }
   changeAvatar(data){
-    return fetch(`${this._url}/users/me/avatar`, {
+    return fetch(`${this._url}users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.cardUrlInput,
+        avatar: data.avatarUrlInput,
       })
     })
-    .then((res)=> res.json())
+    .then((res)=>this._getResponseData(res))
    
   }
   likeCard(cardId){
     return fetch(`${this._url}cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
-      
     })
-    .then((res)=> res.json())
+    .then((res)=>this._getResponseData(res))
   }
   removeLikeCard(cardId){
     return fetch(`${this._url}cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-      
     })
-    .then((res)=> res.json())
+    .then((res)=>this._getResponseData(res))
   }
   
 }
