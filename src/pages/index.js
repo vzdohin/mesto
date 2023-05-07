@@ -108,6 +108,7 @@ Promise.all([api.getAllCards(), api.getUserInfo()])
   .then(([cardsData, userData]) => {
     userId = userData._id;
     userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
     const cardList = new Section({
       items: cardsData,
       renderer: (item) => {
@@ -124,7 +125,6 @@ Promise.all([api.getAllCards(), api.getUserInfo()])
 const handleSaveFormSubmit = (userData) => {
   {
     popupUserInfo.setButtonStatus("Сохранение...");
-    popupUserInfo.removeAte
     const newUserInfo = {
       name: userData.userNameInput,
       about: userData.userAboutInput
