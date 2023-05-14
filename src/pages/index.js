@@ -1,17 +1,10 @@
 import './index.css'
 import {
-  cardsContainer,
-  popups,
   formEditProfile,
   editProfileButton,
-  userNameElement,
   userNameInput,
-  userAboutElement,
   userAboutInput,
-  buttonsClosePopup,
   formElementAddCard,
-  cardNameInput,
-  cardUrlInput,
   addCardButton,
   configValidation,
   authorization,
@@ -26,7 +19,6 @@ import UserInfo from '../components/UserInfo.js';
 import { FormValidator } from '../components/FormValidator.js'
 import Api from '../components/Api';
 import PopupDeleteConfirm from '../components/PopupDeleteConfirm';
-
 
 
 // validation
@@ -89,19 +81,15 @@ const popupDeleteConfirm = new PopupDeleteConfirm('.popup_confirm-delete', (this
 popupDeleteConfirm.setEventListeners();
 
 // попап картинки на весь экр
-
 const popupImage = new PopupWithImage('.popup_zoom-image');
 popupImage.setEventListeners();
 
-
 // попап профиля
-
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   aboutInfoSelector: '.profile__about',
   userAvatarSelector: '.profile__avatar'
 });
-
 
 // сохр инфы пользователя, добавляем карточки с сервера
 Promise.all([api.getAllCards(), api.getUserInfo()])
